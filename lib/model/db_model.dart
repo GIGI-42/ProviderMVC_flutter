@@ -38,6 +38,13 @@ class DataBase {
 
     return true;
   }
+    
+    
+    void createDummyTable() async {
+      _database.execute(
+          'CREATE TABLE Dummy (type TEXT, name TEXT, expiredate TEXT)');
+    }
+
 
     void updateDummyTable(String name) async {
       Map<String,String> map={ "type":"misc","name":name, "expiredate":DateTime.now().toString() };
@@ -69,13 +76,6 @@ class DataBase {
 
 
 
-    void createDummyTable() async {
-      _database.execute(
-          'CREATE TABLE Dummy (type TEXT, name TEXT, expiredate TEXT)');
-    }
-
-
-
     Future<String> fetchTable() async {
 
       List<Map> list = await _database.rawQuery("SELECT * FROM Dummy");
@@ -87,16 +87,6 @@ class DataBase {
         return list.elementAt(0)["name"];
       }
     }
-
-
-
-
-
-
-
-
-
-
 
 
 
